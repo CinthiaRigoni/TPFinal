@@ -1,0 +1,33 @@
+-----SENTENCIAS TP FINAL-----
+
+sequelize model:generate --name MercadoPagoDatos --attributes identificadorPago:integer,fechaCreacion:date,fechaAprobacion:date,formaPago:string,metodoPago:string,nroTarjeta:string,estado:string
+
+sequelize model:generate --name Estado --attributes nombreEstado:string
+
+sequelize model:generate --name Rol --attributes nombreRol:string
+
+sequelize model:generate --name Bebida --attributes nombreBebida:string
+
+sequelize model:generate --name RubroGeneral --attributes nombreRubroGral:string
+
+sequelize model:generate --name RubroInsumo --attributes nombreRubroInsumo:string
+
+sequelize model:generate --name DetalleFactura --attributes cantidad:integer,subtotal:decimal,mercadoPagoDatosId:integer
+
+sequelize model:generate --name Domicilio --attributes calle:string,numero:integer,localidad:string
+
+sequelize model:generate --name Usuario --attributes nombre:string,apellido:string,telefono:integer,email:string,usuario:string,clave:string,rolId:integer,domicilioId:integer
+
+sequelize model:generate --name ArticuloManufacturadoDetalle --attributes cantidad:decimal,unidadMedida:string,articuloInsumoId:integer
+
+sequelize model:generate --name ArticuloManufacturado --attributes tiempoCocinaEstimado:integer,denominacion:string,precioVenta:decimal,imagen:string,rubroGeneralId:integer,articuloManufacturadoDetalleId:integer
+
+sequelize model:generate --name ArticuloInsumo --attributes denominacion:string,precioCompra:decimal,precioVenta:decimal,stockActual:decimal,stockMinimo:decimal,unidadMedida:string,esInsumo:boolean
+
+sequelize model:generate --name DetallePedido --attributes cantidad:integer,subtotal:decimal,articuloManufacturadoId:integer,bebidaId:integer
+
+sequelize model:generate --name Pedido --attributes fecha:date,numero:integer,estado:integer,horaEstimadaFin:datetime,tipoEnvio:integer,total:decimal,usuarioId:integer,domicilioId:integer,detallePedidoId:integer
+
+sequelize model:generate --name EstadoPedido --attributes estadoId:integer,pedidoId:integer
+
+sequelize model:generate --name Factura --attributes fecha:date,numero:integer,montoDescuento:decimal,formaPago:string,nroTarjeta:string,totalVenta:decimal,totalCosto:decimal,detalleFacturaId:integer,pedidoId:integer
