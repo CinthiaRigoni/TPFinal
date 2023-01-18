@@ -37,6 +37,10 @@ module.exports = {
           isAlphanumeric: true,
         }
       },
+      imagen: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
       bajaLogica_id: {
         allowNull: false,
         type: Sequelize.INTEGER,

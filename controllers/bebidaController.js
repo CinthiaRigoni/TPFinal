@@ -32,7 +32,7 @@ const getAllBebidas = async (req, res) => {
 
 //Inserta nueva bebida con su baja logica
 const createBebidas = async (req, res) => {
-    let { nombreBebida, precioCompra, precioVenta, stockActual, unidadMedida } = req.body;
+    let { nombreBebida, precioCompra, precioVenta, stockActual, unidadMedida, imagen } = req.body;
     try {
         //Se crea primero la baja lógica
         let newBajaLogica = await BajaLogica.create({
@@ -46,6 +46,7 @@ const createBebidas = async (req, res) => {
             precioVenta: precioVenta,
             stockActual: stockActual,
             unidadMedida: unidadMedida,
+            imagen: imagen,
             bajaLogica_id: newBajaLogica.id
         })
         console.log(newBebida);
@@ -88,7 +89,7 @@ const bajaBebidas = async (req, res) => {
 //Actualiza una bebida
 const updateBebidas = async (req, res) => {
     try {
-        let { nombreBebida, precioCompra, precioVenta, stockActual, unidadMedida } = req.body;
+        let { nombreBebida, precioCompra, precioVenta, stockActual, unidadMedida, imagen } = req.body;
         let idArt = parseInt(req.params.id);
         //Se busca la bebida, si no existe, envia un mensaje
         let bebida = await Bebida.findByPk(idArt);
@@ -101,7 +102,8 @@ const updateBebidas = async (req, res) => {
             precioCompra: precioCompra,
             precioVenta: precioVenta,
             stockActual: stockActual,
-            unidadMedida: unidadMedida
+            unidadMedida: unidadMedida,
+            imagen: imagen
         }, {
             where: {
                 id: idArt
